@@ -183,7 +183,6 @@ func (q *QRCode) AddData(data any, optimize int) error {
 	case utils.QRData:
 		q.DataList = append(q.DataList, v)
 	case string:
-		fmt.Printf("String: %s\n", v)
 		if optimize > 0 {
 			chunks, err := utils.OptimalDataChunks([]byte(v), optimize)
 			if err != nil {
@@ -211,7 +210,6 @@ func (q *QRCode) Make(fit bool) error {
 	if fit || q.Version() == 0 {
 		q.BestFit(q.Version())
 	}
-	fmt.Printf("VersionMake: %d\n", q.Version())
 	if q.maskPattern == 0 {
 		q.MakeImpl(false, q.BestMaskPattern())
 	} else {
